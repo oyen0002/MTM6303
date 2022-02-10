@@ -1,0 +1,17 @@
+{%- assign primary_locale = 'null' -%}
+{%- for locale in shop.published_locales -%}{%- if locale.primary -%}{%- assign primary_locale = locale.iso_code | json -%}{%- endif -%}{%- endfor -%}
+<script type="text/javascript">
+  window.GloboMenuConfig = window.GloboMenuConfig || {}
+  window.GloboMenuConfig.hasCarousel = {% if items contains 'carousel' %}true{% else %}false{% endif %};
+  window.GloboMenuConfig.products = window.GloboMenuConfig.products || {};
+  window.GloboMenuConfig.collections = window.GloboMenuConfig.collections || {};
+  window.GloboMenuConfig.pages = window.GloboMenuConfig.pages || {};
+  window.GloboMenuConfig.curLocale = {{request.locale.iso_code | json}};
+  window.GloboMenuConfig.GloboMenuLocale = {{request.locale.iso_code | json}};
+  window.GloboMenuConfig.locale = {{primary_locale}};
+  window.GloboMenuConfig.isMultiCurrency  = false;
+  window.GloboMenuConfig.GloboMenuMissingProducts = [];
+  window.GloboMenuConfig.collections['dinning-sets'] = {handle:{{-collections['dinning-sets'].handle | json-}},title:{{-collections['dinning-sets'].title | json-}}};{%- capture product -%}{{-all_products['white-dining-table'] | json-}}{%- endcapture -%}{%- if product contains 'Liquid error' -%}window.GloboMenuConfig.GloboMenuMissingProducts.push('white-dining-table');{%- else -%}window.GloboMenuConfig.products['white-dining-table'] = {{-product-}};{%- endif -%}
+{%- capture product -%}{{-all_products['beige-eiffel-chair'] | json-}}{%- endcapture -%}{%- if product contains 'Liquid error' -%}window.GloboMenuConfig.GloboMenuMissingProducts.push('beige-eiffel-chair');{%- else -%}window.GloboMenuConfig.products['beige-eiffel-chair'] = {{-product-}};{%- endif -%}
+{%- capture product -%}{{-all_products['indoor-chairs'] | json-}}{%- endcapture -%}{%- if product contains 'Liquid error' -%}window.GloboMenuConfig.GloboMenuMissingProducts.push('indoor-chairs');{%- else -%}window.GloboMenuConfig.products['indoor-chairs'] = {{-product-}};{%- endif -%}
+window.GloboMenuConfig.pages['contact'] = {handle:{{-pages['contact'].handle | json-}},title:{{-pages['contact'].title | json-}}};window.GloboMenuConfig.pages['about-us'] = {handle:{{-pages['about-us'].handle | json-}},title:{{-pages['about-us'].title | json-}}};</script>
