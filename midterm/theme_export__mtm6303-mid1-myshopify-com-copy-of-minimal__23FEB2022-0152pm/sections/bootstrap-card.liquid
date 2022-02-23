@@ -1,0 +1,75 @@
+<p> Bootstrap Bonus <p>
+<div class="card-group">
+  <div class="card">
+   <img src="{{  section.settings.card_image | image_url: width: 500 }}" alt="{{ section.settings.card_image.alt }}" />
+
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="{{  section.settings.card_image | image_url: width: 500 }}" alt="{{ section.settings.card_image.alt }}" />
+
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="{{  section.settings.card_image | image_url: width: 500 }}" alt="{{ section.settings.card_image.alt }}" />
+
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
+
+
+{% for block in section.blocks %}
+  {% if block.type == 'advert' %}
+    <!-- output an image with a link -->
+  {% elsif block.type == 'headline' %}
+  {% endif %}
+  <!-- output a header with text -->
+{% endfor %}
+
+{% schema %}
+{
+    "name": "Bootstrap Card",
+    "tag": "section",
+    "settings": [
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card Image"
+        },
+        {
+            "type": "color",
+            "id": "btn-color",
+            "label": "Button Color",
+            "default": "#3b4d28"
+        }
+    ],
+    "presets": [{
+        "name": "Bootstrap Card",
+        "category": "Custom"
+    }]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
